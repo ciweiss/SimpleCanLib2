@@ -168,7 +168,7 @@ class SimpleCan_B_g431B : public SimpleCan
 		bool Loop();
 
 		static FDCAN_HandleTypeDef _hfdcan1;
-		uint8_t TxData[8];
+		uint8_t TxData[16];
 
 		static RxHandlerSTM32 *RxHandlerP;		
 
@@ -179,7 +179,7 @@ class SimpleCan_B_g431B : public SimpleCan
 
 CanIDFilter SimpleCan_B_g431B::SendIDFilterFunc;
 
-static RxHandlerSTM32 Can1RxHandler(8);			// Preferably this should be allocated by the HAL, just paramtereized here!
+static RxHandlerSTM32 Can1RxHandler(16);			// Preferably this should be allocated by the HAL, just paramtereized here!
 RxHandlerSTM32* SimpleCan_B_g431B::RxHandlerP=nullptr;	// Presumably this must be static because of IRQs????
 
 
@@ -488,6 +488,7 @@ bool SimpleCan_B_g431B::SendNextMessageFromQueue()
 				case 6: TxHeader.DataLength = FDCAN_DLC_BYTES_6; break;
 				case 7: TxHeader.DataLength = FDCAN_DLC_BYTES_7; break;
 				case 8: TxHeader.DataLength = FDCAN_DLC_BYTES_8; break;
+				case 16: TxHeader.DataLength = FDCAN_DLC_BYTES_16; break;
 				default: Serial.print("CAN: Invalid message length!\n"); 
 					TxOk = false;
 			}
@@ -510,7 +511,7 @@ bool SimpleCan_B_g431B::SendNextMessageFromQueue()
 // and to not send any data bytes as payload. NumBytes/DLC must be set to the number of bytes expected in the
 // return payload. The answer to the RTR frame will be received and handled like any other CAN message.
 // So, in principle, no data array is required, but unfortunately the STM32 HAL routines expect it...
-uint8_t DummyData[8];
+uint8_t DummyData[16];
 
 bool SimpleCan_B_g431B::SendRequestMessage(int NumBytes, int CanID, bool UseEFF)
 {
