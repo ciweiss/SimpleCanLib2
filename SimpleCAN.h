@@ -159,7 +159,7 @@ class CANTxMessage
 {
 	public:
 		int CanID;
-		uint8_t Data[8];
+		uint8_t Data[16];
 		int Size;
 		bool EFF;
 		bool RTR;
@@ -171,7 +171,7 @@ class CanRxMessage
 	public:
 		CanRxMessage() : Error(false) {};
 		SimpleCanRxHeader SCHeader;
-		uint8_t Data[8];
+		uint8_t Data[16];
 		uint8_t Error;
 };
 
