@@ -147,7 +147,7 @@ void SimpleCANProfile::Init(CanIDFilter IDFilterFunc)
 
 	if (rc==CAN_OK) rc = Can1->ConfigGlobalFilter();
 	if (rc==CAN_OK) rc = Can1->AcceptAllMessages();
-	if (rc==CAN_OK) rc = Can1->ActivateNotification(8, ::HandleCanMessage, this);			
+	if (rc==CAN_OK) rc = Can1->ActivateNotification(16, ::HandleCanMessage, this);			
 	if (rc!=CAN_OK)	Serial.println("CAN initialization error!");
 
 	if (rc==CAN_OK) Serial.println(Can1->Start() == CAN_OK
@@ -260,7 +260,7 @@ void RxHandlerBase::Notify(/*...*/)
 	CanRxMessage Msg;
 
     // Copy the received message into the _rxData buffer
-	if (!CANReadFrame(&Msg.SCHeader, Msg.Data, 8))
+	if (!CANReadFrame(&Msg.SCHeader, Msg.Data, 16))
 	{
 		// Error_Handler();
 		Serial.println("Error returned from ReadFrame!");
