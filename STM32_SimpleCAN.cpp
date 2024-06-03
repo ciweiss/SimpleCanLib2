@@ -474,7 +474,7 @@ bool SimpleCan_B_g431B::SendNextMessageFromQueue()
 			TxHeader.TxFrameType = FDCAN_DATA_FRAME;
 			TxHeader.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
 			TxHeader.BitRateSwitch = FDCAN_BRS_OFF;
-			TxHeader.FDFormat = FDCAN_CLASSIC_CAN;
+			TxHeader.FDFormat =FDCAN_FD_CAN ;
 			TxHeader.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
 			TxHeader.MessageMarker = 0;
 			switch(Msg.Size)
