@@ -302,7 +302,7 @@ SCCanStatus SimpleCan_B_g431B::Init(SCCanSpeed speed, CanIDFilter IDFilterFunc)
 	init->DataSyncJumpWidth = 4;
 	init->DataTimeSeg1 = 5;
 	init->DataTimeSeg2 = 4;
-	init->StdFiltersNbr = 1;
+	init->StdFiltersNbr = 2;
 	init->ExtFiltersNbr = 1;
 	init->TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
 	
